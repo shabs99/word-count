@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler
     private String FILE_FAILURE = "FAILED TO PROCESS FILE";
     private String INTERNAL_SERVER_ERROR = "BAD_REQUEST";
 
-    @ExceptionHandler(IOException.class)
+    @ExceptionHandler({IOException.class, ParserConfigurationException.class})
     public final ResponseEntity<ErrorResponse> handleUserNotFoundException
             (IOException ex, WebRequest request)
     {

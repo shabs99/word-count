@@ -15,8 +15,9 @@ public class WordCountController {
     @Autowired
     private WordCountService wordCountService;
 
-    @PostMapping("/count")
-    public ResponseEntity<WordCountResponse> count(@RequestParam("file") MultipartFile file, @RequestParam("searchWord") String searchWord){
+    @PostMapping("/count/{searchWord}")
+    public ResponseEntity<WordCountResponse> count(@RequestParam("file") MultipartFile file,
+                                                   @PathVariable("searchWord") String searchWord){
         WordCountResponse response =wordCountService.count(file,searchWord);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
