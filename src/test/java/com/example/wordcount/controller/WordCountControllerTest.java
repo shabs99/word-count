@@ -38,7 +38,7 @@ class WordCountControllerTest {
 
         MockMultipartFile file = new MockMultipartFile("billing.txt", "billing.txt","text/plain",new FileInputStream(path));
         when(wordCountService.count(file, "test")).thenReturn(wordCountResponse);
-        mockMvc.perform(MockMvcRequestBuilders.multipart("/word-count/count/test")
+        mockMvc.perform(MockMvcRequestBuilders.fileUpload("/word-count/count/test")
                 .file(file)
                 .contentType(MediaType.MULTIPART_FORM_DATA_VALUE))
                 .andReturn();

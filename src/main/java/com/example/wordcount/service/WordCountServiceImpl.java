@@ -30,7 +30,6 @@ public class WordCountServiceImpl implements WordCountService{
 
     @SneakyThrows
     private String xmlFileReader(String xmlString) {
-
         final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         final DocumentBuilder db = dbf.newDocumentBuilder();
         final ByteArrayInputStream bis = new ByteArrayInputStream(xmlString.getBytes());
@@ -40,7 +39,6 @@ public class WordCountServiceImpl implements WordCountService{
         StringBuffer extractedXML= new StringBuffer();
         node = nodeList.item(0);
         extractedXML.append(node.getTextContent());
-
         return extractedXML.toString();
     }
 
@@ -51,7 +49,6 @@ public class WordCountServiceImpl implements WordCountService{
         if(ext.contains("xml")){
             words = xmlFileReader(words);
         }
-
         words = words.replaceAll("[\\s\\.]", " ");
         words = words.replace("\uFEFF", "");
         words = words.replace("\n", "");
